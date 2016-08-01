@@ -6,16 +6,27 @@
 // - linking
 //
 // preprocessing:
-// Turns all of those 'include's 
+// Expands all of those 'include's so it's just as if you had typed all the
+// libraries at the start of your file. And other stuff you don't need to
+// care about yet. But remember, they're .h files: they have the headers, 
+// but not the actual code. A header file is like a table of contents: it says
+// "These are the functions that exist. Trust me; you can use them." So when
+// you include <math.h> or <stdio.h>, your code trusts that the functions
+// defined in there exist... somewhere and that you'll link them in later.
+// 
 // compiling:
-// * compiling means making a machine language file called an object file. It's
-// not an executable. You can compile without linking if you do gcc -c.
-// * compiling turns each source code file turns into one object file, so if only
-// one library changes, you don't need to rebuild everything. It's faster.
-// * #include pulls in the right header file.  A header file is like a table of
-// contents: these are the functions that exist. So when you include <math.h>
-// or <stdio.h>, your code knows that the functions in there exist... somewhere.
+// Compiling means making a machine language file called an object file. It's
+// not an executable. You can compile without linking if you do gcc -c and look
+// at the file it makes. Each source code file turns into one object file, so
+// if only one library changes, you don't need to rebuild everything. It's
+// faster. The compiler will barf if you call a function you haven't *declared*,
+// but it won't care whether the function is actually *defined* somewhere.
 //
+//   declared:  void ISwearMyFunctionIsSomewhere();
+//
+//   defined:   void ThisIsTheActualCodeForAFunction() { // do something }
+//
+// 
 // linking:
 // Then the linker runs to pull all the object files into an executable. But it also
 // needs object files for those libraries you included. Linking lets it find them. 
